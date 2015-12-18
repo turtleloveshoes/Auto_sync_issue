@@ -1,0 +1,49 @@
+# notes how to collect sync logs and exposted about:support api
+
+Collect about:support api use version 45
+https://bugzilla.mozilla.org/show_bug.cgi?id=1220926
+
+
+Path to sync logs on mac: 
+file:///Users/rmcguigan/Library/Application Support/Firefox/Profiles/l29owbc9.Rachel/weave/logs/
+.../Library/Application Support/Firefox/Profiles/XXPrifileXnameXXX/weave/logs/
+
+#collect logs in local profile?
+
+profile/weave/logs/ text files 
+
+Reading text files from back 2 days max
+http://stackoverflow.com/questions/237079/how-to-get-file-creation-modification-date-times-in-python 
+
+Reading types of lines in the file: 
+1426613414488	Sync.Status	DEBUG	Status.service: success.status_ok => success.status_ok
+
+1426613578906	Sync.SyncScheduler	DEBUG	Next sync in 600000 ms.
+
+
+1426613415441	Sync.Tracker.Bookmarks	DEBUG	Saving changed IDs to bookmarks
+
+
+Notes on what each means: 
+timestamp  sync.module  status action
+
+
+Reading list error message text file example: 
+#want error log
+1428687243829	FirefoxAccounts	ERROR	error POSTing /certificate/sign: {"code":401,"errno":110,"error":"Unauthorized","message":"Invalid authentication token in request signature","info":"https://github.com/mozilla/fxa-auth-server/blob/master/docs/api.md#response-format"}
+14286
+
+1428687231575	readinglist.scheduler	INFO	readinglist scheduler created.
+1428687231575	readinglist.scheduler	INFO	scheduler initialzing
+1428687231575	readinglist.scheduler	INFO	canSync=true
+1428687231575	readinglist.scheduler	INFO	next scheduled sync is in 10000ms (at Fri Apr 10 2015 10:34:01 GMT-0700 (PDT))
+1428687231577	browserwindow.syncui	DEBUG	observed: weave:service:ready
+1428687231579	browserwindow.syncui	DEBUG	observed: weave:service:ready
+1428687231580	browserwindow.syncui	DEBUG	observed: weave:service:ready
+1428687231679	FirefoxAccounts	DEBUG	got keyPair
+1428687231679	FirefoxAccounts	DEBUG	getCertificateSigned: true true
+1428687232219	FirefoxAccounts	ERROR	error POSTing /certificate/sign: {"code":401,"errno":110,"error":"Unauthorized","message":"Invalid authentication token in request signature","info":"https://github.com/mozilla/fxa-auth-server/blob/master/docs/api.md#response-format"}
+1428687232219	FirefoxAccounts	ERROR	HAWK.signCertificate error: {"code":401,"errno":110,"error":"Unauthorized","message":"Invalid authentication token in request signature","info":"https://github.com/mozilla/fxa-auth-server/blob/master/docs/api.md#response-format"}
+1428687232220	browserwindow.syncui	DEBUG	observed: weave:ui:login:error
+
+put in zip file and deliver to drop box and send notification
